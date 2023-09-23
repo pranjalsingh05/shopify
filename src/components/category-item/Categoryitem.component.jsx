@@ -4,7 +4,7 @@ const Categoryitem= ({category}) => {
   return (
       <div
           key={category.id}
-          className="min-w-[30%] h-[240px] flex flex-1 items-center justify-center border border-black m-[0 7.5px 15px] overflow-hidden group transition-transform duration-600 ease-in-out transform-gpu scale-100 hover:scale-110 hover:cursor-pointer hover:opacity-90"
+          className="min-w-[30%] h-[240px] flex flex-1 items-center justify-center border border-black mt-0 mr-7.5 mb-15 ml-0 overflow-hidden group transition-transform duration-600 ease-in-out transform-gpu scale-100 hover:scale-110 hover:cursor-pointer hover:opacity-90"
       >
           <div
               className="w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-600 ease-in-out transform-gpu scale-100 group-hover:scale-110"

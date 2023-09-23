@@ -1,0 +1,52 @@
+
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect } from "firebase/auth"
+import{ getFirestore,doc,getDoc,setDoc} from "firebase/firestore"
+const firebaseConfig = {
+    apiKey: "AIzaSyB5OljtlgPUFD6098gjyGCN3pMqpxIArFE",
+    authDomain: "shopify-db-630a3.firebaseapp.com",
+    projectId: "shopify-db-630a3",
+    storageBucket: "shopify-db-630a3.appspot.com",
+    messagingSenderId: "998256142142",
+    appId: "1:998256142142:web:b457670180924e6a3e2e6f"
+};
+
+// Initialize Firebase
+const firbaseApp = initializeApp(firebaseConfig);
+
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+    prompt:"select_account"
+});
+
+export const auth = getAuth();
+export  const signinwithGooglepopup=()=>signInWithPopup(auth ,provider);
+export  const signinwithredirect =()=>signInWithRedirect(auth ,provider);
+
+export const db=getFirestore();
+export const createUserdb=async(userAuth)=>{
+    const userdbRef=doc(db ,'users' ,userAuth.uid);
+    console.log(userdbRef);
+    const snapshot=await getDoc(userdbRef);
+    if(!snapshot.exists())
+    {
+        const {displayName, email }=userAuth;
+        const createdAt= new Date();
+
+
+        try{
+            await setDoc(userdbRef,
+                {
+                    displayName,
+                    email,
+                    createdAt
+                });
+
+        }catch(error)
+        {
+                console.log("error creating user", error.message);
+        }
+    }
+    return userdbRef;
+
+}
