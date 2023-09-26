@@ -1,6 +1,8 @@
 
 import { createUserdb, signinwithGooglepopup } from "../../utils/firebase/firebase.util";
 
+import SignUp from "../../components/sign-up/SignUp.component";
+
 const SignIn=()=>{
     const signinHandler= async()=>
     {
@@ -11,8 +13,14 @@ const SignIn=()=>{
       
    return(
         <div >
-        
-            <button onClick={signinHandler}>Sign In</button>
+            <div>
+               <button onClick={signinHandler}>Sign In</button>
+            </div>
+            
+            <div>
+               <SignUp />
+            </div>
+            
            
         </div>
     )
