@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+
 import { createAuthUserWithEmailAndPassword ,createUserdb} from '../../utils/firebase/firebase.util'
 import FormInput from '../form-input/FormInput.component'
 import Button from '../button-type/Button.component'
@@ -14,6 +15,7 @@ const fields={
 const SignUp = () => {
   const [formFields,setFormFields]=useState(fields);
   const { displayName, email, password, confirmPassword } = formFields;
+  
 
 
   
@@ -22,7 +24,7 @@ const SignUp = () => {
 
     setFormFields({...formFields,[name]:value});
   }
-  console.log(formFields);
+  
 
   const submitHandler=async(event)=>{
     event.preventDefault();
@@ -33,9 +35,11 @@ const SignUp = () => {
     }
     try{
       const {user} = await createAuthUserWithEmailAndPassword(email, password);
-      const userDocRef = await createUserdb(user,{displayName})
+
+       await createUserdb(user,{displayName})
     
       setFormFields(fields);
+      
     }catch(error)
     {
       console.log("error in signing up",error);
@@ -47,8 +51,8 @@ const SignUp = () => {
 
 
   return (
-    <div className='flex flex-col w-1/3'>
-        <h2 className='my-10'>Dont have an account</h2>
+    <div className='flex flex-col w-380'>
+        <h1 className=' text-lg mt-10 font-bold'>Dont have an account ?</h1>
         <span>Sign Up Using Email and Password</span>
         <form onSubmit={submitHandler}>
            <FormInput 
@@ -68,7 +72,10 @@ const SignUp = () => {
           label="Confirm Password"
           required type='password' onChange={changeHander} name='confirmPassword' value={confirmPassword}
         />
-        <Button text="Sign in" buttontype="" type="submit" />
+        <div className='grid grid-cols-2'>
+          <Button text="SIGN UP" buttontype="" type="submit" />
+        </div>
+        
         </form>
     </div>
   )

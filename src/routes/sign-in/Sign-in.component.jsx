@@ -1,23 +1,25 @@
 
-import { createUserdb, signinwithGooglepopup } from "../../utils/firebase/firebase.util";
+
+
 
 import SignUp from "../../components/sign-up/SignUp.component";
+import Signin from "../../components/signin-form/Signin.component";
+
 
 const SignIn=()=>{
-    const signinHandler= async()=>
-    {
-        const {user}=await signinwithGooglepopup();
-        const userDocRef = await createUserdb(user)
-    }
+    
+
+
+   
+
+
 
       
    return(
-        <div >
-            <div>
-               <button onClick={signinHandler}>Sign In</button>
-            </div>
+        <div className="grid grid-cols-2 gap-20 p-10" >
+             <Signin />
             
-            <div>
+           <div  >
                <SignUp />
             </div>
             
