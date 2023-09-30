@@ -5,8 +5,8 @@ import { UserContext } from '../../contexts/user.context'
 import { CartContext } from '../../contexts/cart.context'
 import {ReactComponent as ShopifyLogo } from "../../assets/shopify-2.svg"
 import { signOutUser } from '../../utils/firebase/firebase.util'
-import CardIcon from '../../components/card-icon/Card-Icon.component'
-import CardDropdown from '../../components/card-dropdown/CardDropdown.component'
+import CartIcon from '../../components/cart-icon/Cart-Icon.component'
+import CartDropdown from '../../components/cart-dropdown/CartDropdown.component'
 
 const Navigation = () => {
 
@@ -31,9 +31,9 @@ const Navigation = () => {
                            ( <Link className="nav-link px-4 py-2 cursor-pointer" to="/signin">SIGN IN</Link>)
 
                     }
-                    <CardIcon />
+                    <CartIcon />
                 </div>
-              {  isCardOpen &&  <CardDropdown />}
+              {  isCardOpen &&  <CartDropdown />}
             </div>
             <Outlet />
         
