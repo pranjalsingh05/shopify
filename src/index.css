@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 
-.shrinkabel {
-    top: -14px;
-    font-size: 12px;
-    color: #000;
-}
+body {
+   padding: 20px 40px;
  
+}

@@ -3,16 +3,12 @@ import { Routes, Route, } from "react-router-dom";
 import Directory from "../../components/Directory/Directory.component";
 import Navigation from '../navigation/Navigation.component';
 import SignIn from '../sign-in/Sign-in.component';
+import Shop from '../shop/Shop.component';
 
 
 
 
-const Shop = () => {
-    return (
-        <div>
-            <h1>Shopping component</h1>
-        </div>
-    )}
+
 
 const Home = () => {
   
