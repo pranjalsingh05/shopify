@@ -13,7 +13,7 @@ const ProductCard = ({product}) => {
           <Button onClick={()=>addItemtoCart(product)}  text='Add to Cart' buttontype="inverted" />
           <footer className='w-full h-5/100 flex justify-between items-center text-lg'>
               <span className='name w-90/100 mb-3'>{name}</span>
-              <span className='price w-10/100'>Rs.{price}</span>
+              <span className='price w-10/100'>&#8377;{price}</span>
           </footer>
       </div>
 
