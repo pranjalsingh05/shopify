@@ -44,7 +44,7 @@ const Home = () => {
       <Routes>
           <Route path="/" element={<Navigation />}>
               <Route index element={<Directory categories={categories} />} />
-              <Route path="/shop" element={<Shop />} />
+              <Route path="/shop/*" element={<Shop />} />
               <Route path="/signin" element={<SignIn />}/>
               <Route path="/checkout" element={<CheckOut />} /> 
 

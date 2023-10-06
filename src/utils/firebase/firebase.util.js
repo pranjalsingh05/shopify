@@ -10,7 +10,7 @@ import {
      signOut,
      onAuthStateChanged
     } from "firebase/auth"
-import{ getFirestore,doc,getDoc,setDoc} from "firebase/firestore"
+import{ getFirestore,doc,getDoc,setDoc,collection,writeBatch,getDocs,query} from "firebase/firestore"
 const firebaseConfig = {
     apiKey: "AIzaSyB5OljtlgPUFD6098gjyGCN3pMqpxIArFE",
     authDomain: "shopify-db-630a3.firebaseapp.com",
@@ -21,6 +21,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// eslint-disable-next-line no-unused-vars
 const firbaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
@@ -34,6 +35,38 @@ export  const signinwithredirect =()=>signInWithRedirect(auth ,provider);
 
 
 export const db=getFirestore();
+
+export const addCollectionAndDocuments=async(collectionKey,objectsToAdd)=>{
+    const collectionRef=collection(db,collectionKey);
+    const batch=writeBatch(db);
+
+    objectsToAdd.forEach((object) => {
+        const docRef=doc(collectionRef,object.title.toLowerCase());
+        batch.set(docRef,object)
+        
+    });
+   await batch.commit();
+    console.log('done');
+}
+
+
+
+  export const getCollectionsAndDocuments=async()=>{
+    const collectionRef=collection(db,'categories');
+    const q=query(collectionRef);
+    console.log("query is :"+ q)
+    const snapshot=await getDocs(q);
+    console.log(snapshot)
+    const categoriesMap=snapshot.docs.reduce((acc,docSnapshot)=>{
+        const {title,items}=docSnapshot.data();
+        acc[title.toLowerCase()]=items;
+        return acc;
+    },{})
+    return categoriesMap;
+
+  }
+
+
 
 
 export const createUserdb=async(userAuth,additionalInfo={})=>{
